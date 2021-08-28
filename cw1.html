@@ -202,7 +202,7 @@
                                 "phone": this.order.phoneNum,
                                 "subject": item.title,
                                 "id": item._id,
-                                "spaces":item.availableInventory
+                                "spaces":10- item.availableInventory
                             };
                             this.addOrder(body);
                             this.updateAvailability(item._id, item.availableInventory);
