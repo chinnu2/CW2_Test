@@ -9,7 +9,7 @@ const app = express()
 // config Express.js
 app.use(express.json())
 app.set('port', 3000)
-const cors = require('cors');
+//const cors = require('cors');
 app.use ((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.header("Access-Control-Allow-Headers","*");
