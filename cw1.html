@@ -3,7 +3,7 @@
 <head>
     <title>Vue.js Pet Depot</title>
     <script src="https://unpkg.com/vue"></script>
-   // <script src="products.js"></script>
+    <script src="products.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
@@ -18,7 +18,7 @@
         </header>
         <main>
             <div v-if='showProduct'>
-                <div v-for="product in product">
+                <div v-for="product in products">
                     <h2 v-text="product.title"></h2>
                     <figure>
                         <img v-bind:src="product.image">
@@ -127,7 +127,7 @@
             el: '#app',
             data: {
                 sitename: 'Vue.js Pet Depot',
-                product: [],
+                products: [],
                 // product: {
                 //     id: 1001,
                 //     title: "Cat Food, 25lb bag",
@@ -186,14 +186,12 @@
                     return count;
                 }
             },
-            getLessons() {
-                    fetch('https://chinnu3.herokuapp.com/collection/products')
-                        .then(response => response.json())
-                        .then(json => webstore.products = json)
-                        .catch(err => console.log(err));
-                },
-            
-            
+            retrieveLessons()
+                    {   fetch('https://chinnu3.herokuapp.com/collection/product')
+                            .then(response => response.json())
+                            .then(data => this.product = data)
+                            .catch(error => console.log(error));
+                    },
             
             
             computed: {
@@ -215,19 +213,15 @@
                     return productsArray.sort(compare);
                 }
             },
-            
-            
-             mounted() {
-                this.getLessons();
-            }
+            mounted()
+                {
+                    this.retrieveLessons();
+                }
 
-            
+
         });
 
-      
-
-
-
+        
 
     </script>
 </body>
