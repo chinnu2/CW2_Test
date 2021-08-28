@@ -201,7 +201,7 @@
                                 "name" : this.order.firstName,
                                 "phone": this.order.phoneNum,
                                 "subject": product.title,
-                                "id": item._id,
+                                "id": product._id,
                                 "spaces": product.availableInventory -cartCount(product.id)
                             };
                             this.addOrder(body);
