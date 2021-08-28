@@ -127,7 +127,7 @@
             el: '#app',
             data: {
                 sitename: 'Vue.js Pet Depot',
-                products: products,
+                products: [],
                 // product: {
                 //     id: 1001,
                 //     title: "Cat Food, 25lb bag",
@@ -186,18 +186,12 @@
                     return count;
                 }
             },
-            addOrder(body) {
-            var raw = JSON.stringify(body);
-
-            fetch(`https://chinnu3.herokuapp.com/collection/products`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+            getLessons() {
+                    fetch('https://chinnu3.herokuapp.com/collection/products')
+                        .then(response => response.json())
+                        .then(json => webstore.products = json)
+                        .catch(err => console.log(err));
                 },
-                body: raw,
-            }).catch(err => console.log(err));
-
-        },
             
             
             
@@ -223,24 +217,9 @@
             },
         });
 
-        const newProduct = { title: 'new product', price: 49 };
-
-// set the url to your server and route
-fetch('https://chinnu3.herokuapp.com/collection/products', {
-    method: 'POST', // set the HTTP method as 'POST'
-    headers: {
-        'Content-Type': 'application/json', // set the data type as JSON
-    },
-    body: JSON.stringify(newProduct), // need to stringify the JSON object
-})
-    .then(response => response.json())
-    .then(responseJSON => {
-        document.getElementById('response').innerText = JSON.stringify(responseJSON);
-    })
-    .catch((error) => {
-        document.getElementById('error').innerText = error;
-    });
-
+       mounted() {
+                this.getLessons();
+            }
 
 
 
