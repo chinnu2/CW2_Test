@@ -1,14 +1,16 @@
 {
-  "name": "cw2",
+  "name": "mongo-demo",
   "version": "1.0.0",
-  "description": "10% lab work",
+  "description": "",
   "main": "server.js",
-  
-  "dependencies": {
-    "express": "^4.17.1"
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "@types/node": "^14.6.0",
-    "nodemon": "^2.0.2"
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3"
   }
 }
+
