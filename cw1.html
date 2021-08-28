@@ -196,16 +196,16 @@
 
                     submitForm() {
                     alert('Order submitted!')
-                    this.cart.forEach(item => {
+                    this.cart.forEach(product => {
                             let body = {
                                 "name" : this.order.firstName,
                                 "phone": this.order.phoneNum,
-                                "subject": item.title,
+                                "subject": product.title,
                                 "id": item._id,
-                                "spaces": 20 - item.availableInventory
+                                "spaces": product.availableInventory -cartCount(product.id)
                             };
                             this.addOrder(body);
-                            this.updateAvailability(item._id, item.availableInventory);
+                            this.updateAvailability(product._id, product.availableInventory);
                         });
                         //alert a thank you message for the order
                         alert("Thank you for the order," + this.order.firstName);
