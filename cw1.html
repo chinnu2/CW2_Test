@@ -18,7 +18,7 @@
         </header>
         <main>
             <div v-if='showProduct'>
-                <div v-for="product in products">
+                <div v-for="product in product">
                     <h2 v-text="product.title"></h2>
                     <figure>
                         <img v-bind:src="product.image">
@@ -110,7 +110,7 @@
 
 
                 <button v-on:click="submitForm">Place Order</button>
-                <div v-for="product in products" v-if='cartCount(product.id)' >
+                <div v-for="product in product" v-if='cartCount(product.id)' >
                     <h2 v-text="product.title"></h2>
                    
                     <p>Price: {{product.price}}</p>
@@ -127,7 +127,7 @@
             el: '#app',
             data: {
                 sitename: 'Vue.js Pet Depot',
-                products: [],
+                product: [],
                 // product: {
                 //     id: 1001,
                 //     title: "Cat Food, 25lb bag",
@@ -186,12 +186,21 @@
                     return count;
                 }
             },
-            retrieveLessons()
-                    {   fetch('https://chinnu3.herokuapp.com/collection/product')
-                            .then(response => response.json())
-                            .then(data => this.product = data)
-                            .catch(error => console.log(error));
-                    },
+            created: function () {
+                console.log('requesting data from server ...')
+                
+                fetch('https://chinnu3.herokuapp.com/collection/product').then(
+                    function (response) {
+                        response.json().then(
+                            function (json) {
+                                // save the returned JSON object to
+                                // 'product' data property
+                                webstore.product = json;
+                                console.log(json);
+                            });
+                    }
+                )
+            },
             
             
             computed: {
@@ -213,11 +222,7 @@
                     return productsArray.sort(compare);
                 }
             },
-            mounted()
-                {
-                    this.retrieveLessons();
-                }
-
+           
 
         });
 
