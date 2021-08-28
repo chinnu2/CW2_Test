@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "10% lab work",
   "main": "server.js",
-  "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
-  },
+  
   "dependencies": {
     "express": "^4.17.1"
   },
