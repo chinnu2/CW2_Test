@@ -187,7 +187,8 @@
                             headers: { 'Content-Type': 'application/json'},
                             body: JSON.stringify(
                                 {
-                                    "availableInventory": quantity
+                                    "availableInventory": quantity,
+                                    "_id":id
                                 }
                             )
                         }).then(response => response.json()).then(data => {return data })
@@ -202,7 +203,7 @@
                                 "phone": this.order.phoneNum,
                                 "subject": item.title,
                                 "id": item._id,
-                                "spaces":10- item.availableInventory
+                                "spaces":10-item.availableInventory
                             };
                             this.addOrder(body);
                             this.updateAvailability(item._id, item.availableInventory);
